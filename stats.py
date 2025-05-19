@@ -21,21 +21,19 @@ def wordcount(book_string):
         return count   
     except Exception as e:
         return f"An error occurred: {e}"
-    
+
+from collections import Counter, OrderedDict 
+
 def charactercount(book_string):
     try:
         lower_case = book_string.lower()
-        character_list = list(lower_case)
-        characters = {}
-        for char in character_list:
-            if char in characters:
-                characters[char] += 1
-            else:
-                characters[char] = 1
+        charCount = Counter(lower_case) #Returns a Counter Object which is like a dictionary
+        sortedCount = sorted(charCount.items(), key=lambda item: item[1], reverse=True)
+        characters = OrderedDict(sortedCount)
         return characters
-
     except Exception as e:
         return f"An error occurred: {e}"
+    
 
 if __name__ == "__main__":
     book_content = main()

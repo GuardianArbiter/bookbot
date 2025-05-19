@@ -5,9 +5,16 @@ def main():
     book_content = get_book_text(file_path)
     if isinstance(book_content, str) and not book_content.startswith("Error"):
         word_count = wordcount(book_content)  # Call wordcount and store the result
-        print(f"'{word_count} words found in the document'")
         char_counts = charactercount(book_content)
-        print(char_counts) 
+        print("============ BOOKBOT ============")
+        print(f"Analyzing book found at {file_path}")
+        print("----------- Word Count ----------")
+        print(f"'Found {word_count} total words'")
+        print("--------- Character Count -------")
+        for char, count in char_counts.items():
+            if char.isalpha():
+                print(f"'{char}: {count}'")
+        print("============= END ===============")
     else:
         print("Could not process word count due to an error in reading the file.")
 
